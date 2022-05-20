@@ -1,0 +1,25 @@
+[
+    {
+        "nama": "Ahmad Zuhril Fahrizal",
+        "umur": 17,
+        "nis": "30291",
+        "lulus": true,
+        "hobby": ["coding", "gaming"],
+        "pembimbing": {
+            "pembimbing1": "Abu Basmalah",
+            "pembimbing2": "Ariful Furqon"
+        }
+    },
+
+    {
+        "nama": "Aditya Dewaprumudya",
+        "umur": 20,
+        "nis": "30298",
+        "lulus": true,
+        "hobby": ["coding", "robotik"],
+        "pembimbing": {
+            "pembimbing1": "Abu Basmalah",
+            "pembimbing2": "Ariful Furqon"
+        }
+    }
+]

@@ -1,0 +1,140 @@
+API (Application Programming Interface)
+adalah sekumpulan fungsi, subroutine, protokol komunikasi, atau kakas / tools untuk membuat perangkat lunak
+
+apa itu Interface / antarmuka ?
+bagian yang sama antara dua taua lebih komponen terpisah pada sebuah sistem komputer
+
+atau bisa diartikan API sebuah anatarmuka yang berupa kumpukan fungsi yang dapat di panggil atau dijalankan oleh program lain
+
+Penerapan API dengan WEB API / WEB SERVICE : 
+Sebuah sistem peranhkat lunak yang dibuat untuk mendukung interoperabilitas / interaksi antar 2 aplikasi yang berbeda melalui jaringan
+selama pertukannya di lakukan di dalam HTTP, ditengahnya kita bisa buat web service ditengah tengahnya / jembatan
+
+-> SOAP(Simple Object Access Protocol)
+-> REST (REspresntational State Transfer)
+
+APA ITU REST API ? 
+konsep REST dan HTTP
+REST API adalah sebuah Gaya / style arsitektural perangkat lunak yang di dalamnya mendefinisikan aturan aturan untuk membuat web service. dan dia stateless, dibuat oleh Roy Fielding, disertasi PhDnya. Protocolnya selalu menggunakan HTTP. Memungkinkan interaksi antar mesin dengan mesin
+
+API bisa diakses oleh siapa pun
+API adalah penghubungnya
+REST API adalah aturan aturan nya
+ada request dan response
+data yang dikirim / diterima berupa JSON
+
+HTTP ?
+Hypertext Transfer Protocol
+
+URL ?
+URL : Uniform Resouce Locator
+sebuah alamat dari sebuah resource yang dapat diakses di internet
+contoh : https://www.facebook.com/index.php
+meskupun bisa diubah dengan : mod_rewrite / .htaccess
+
+Kode status ? 
+200 = success
+404 = Not Found
+500 = Server Error
+link lebih lengkape : https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+kenapa butuh kode status ? 
+karena, misal kita akses url yang ngaco,  nah server balikin kode 404, nah kita sebagai manusia bisa baca kode tersebut kalau Error
+
+apa bedanya rest & restful ? 
+Restful menggunakan REST secara benar
+didalam HTPP ada Method / Verbs
+- GET => Mengambil Data
+- POST => Menambah Data
+- PUT => Mengubah Data
+- DELETE => Menghapus Data
+namun, untuk 2 method setelah get dan post browser tidak bisa menggunakannya, tapi bahasa pemrograman bisa melakukannya
+link lebihh lengkape : https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+
+Stateless ? 
+Setiap request HTTP dilakukan secara terisolasi 
+Server tidak menyimpan state apapun mengenai sesi dari client
+Setiap request dari client harus berisi semua informasi yang dibutuhkan server. Termasuk informasi data authentikasinya
+
+Penerapan Restful API: 
+-> Menggunakan HTTP method yang benar 
+-> URL / endpoints-nya menggunakan kata benda, bukan kata kerja
+-> stateless
+
+apa itu json ? 
+Javascript Object Notation
+adalah sebuah file format standar yang menggunakan tulisan yang dapat dibaca oleh manusia untuk pertukaran data, yang di dalamnya berisi pasangan antara key dan value
+
+Kakteristik JSON :
+Format pertukaran data tekstual yang sangat ringan
+Sintaknya sangat sederhana dan jelas (dibanding XML)
+Dapat digunakan pada beragam bahasa pemrograman
+Tiap bahasa pemrograman memiliki cara tersendiri untuk berinteraksi dengan JSON
+Dibuat berdasarkan format object pada Javascript
+Digunakan juga unutk file konfigurasi (tidak disarankan) karena tidak support untuk sintaks komentar
+Tipe file JSON memiliki ekstensi .json
+Format JSON dibuat dan diusulkan oleh DOUGLAS CROCKFORD
+
+Perbedaan JSON dan XML:
+XML cara penulisannya sangat duplikatif karena, XML Penerapannya mirip dengan HTML. Ada tag pembuka dan penutup. Ukuran file XML lebih besar dibandingkan dengan JSON. Di JSON tidak bisa menuliskan suatu method pada object
+
+cara penulisan json:
+{
+    "key": value,
+}
+
+nilai yang dimasukkan kedalam json disingkat dengan BASONN(boolean, array, string, object, Number, Null).
+
+Bekerja Dengan Json:
+di PHP ada 2 method yang digunakan : 
+-json_encode() => mengubah array yang kita punya jadi format json
+
+-json_decode() => mengambil json diubah menjadi array
+
+lalu, jika kita mengakses json orang lain ada 1 method yaitu:
+-file_get_contents()
+
+Sedangkan dalam Javascript ada 2 method yaitu :
+-> JSON.stringify() = mengubah object menjadi json
+-> JSON.parse() = mengubah json menjadi object
+
+cara menggunakan dengan ajax dengan jquery pada js :
+$.ajax({
+        url: 'http://www.omdbapi.com',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'apikey': '7ed2710b',
+            's': $('#search-input').val(),
+        },
+        success: function (result) {
+            if (result.Response == "True") {
+                let movies = result.Search;
+                $.each(movies, function (index, data) {
+                    $('#daftar-movie').append(cardMovies(data));
+                });
+
+                $('#search-input').val('');
+            } else {
+                $('#daftar-movie').html(`
+                        <div class="col">
+                            <h1 class="text-center">Movie ${result.Error}</h1>
+                        </div>
+                    `);
+            }
+        }
+    });
+
+Bagaimana jika jsonnya di luar domain ?
+maka akan disebut dengan same-origin Policy
+Dimana kebijakan browser untuk mengakses dan menampilkan data / script / document dari tempat lain di luar domainnya
+Dan membuat kita tidak bisa mengakses data (.json) dari luar domain / website kita
+
+CORS (Cross Origin Resource Sharing)
+sebuah mekanisme yang membuat kita dapat mengakses sebuah resource (data, document, script,) dari domain lain
+Modifikasi Access-Control-Allow-Origin
+biasanya membuat file .htaccess
+jsonp ?
+
+APA ITU PUBLIC API ?
+MEMBUAT REST SERVER SENDIRI !
